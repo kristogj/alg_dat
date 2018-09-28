@@ -1,1 +1,2 @@
-# alg_dat_learn
+# Algorithms and Data Structures
+This repo is made for learning purposes only
