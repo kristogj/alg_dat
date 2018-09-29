@@ -50,14 +50,14 @@ def dfs(root, value):
         print(current)
         if current.value == value:
             return True
-        for x in range(len(current.children) - 1, -1, -1):
-            stack.append(current.children[x])
+        for child in current.children[::-1]:
+            stack.append(child)
     return False
 
 
 print(bfs(root,2))
 print()
-print(dfs(root,2))
+print(dfs(root,6))
 
 
 
