@@ -39,14 +39,14 @@ class MaxBinaryHeap:
             self.max_heapify(i)
 
     def extract(self):
-        l = len(self.heap) - 1
+        l = self.lengde - 1
         self.heap[0], self.heap[l] = self.heap[l], self.heap[0]
         res = self.heap.pop()
         self.max_heapify(0)
         return res
 
     def insert(self, value):
-        i = len(self.heap)
+        i = self.lengde
         self.heap.append(value)
         while i > 0 and self.heap[i] > self.heap[parent(i)]:
             self.heap[i], self.heap[parent(i)] = self.heap[parent(i)], self.heap[i]
