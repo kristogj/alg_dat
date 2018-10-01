@@ -64,11 +64,35 @@ def dijkstra(graph, start_node):
 
     return graph.nodes
 
+def draw(g):
+    n = g.nodes
+    # Draw graph
+    G = nx.Graph()
+    color_map = []
+    for node in n:
+        G.add_node(node.id, distance=node.distance)
+        if node.id == 0:
+            color_map.append("blue")
+        else:
+            color_map.append("red")
+    for key in g.edges.keys():
+        start = key
+        ends = g.edges[key]
+        for end in ends:
+            G.add_edge(start.id, end.id, weight=g.get_weight(start, end))
+
+    pos = nx.spring_layout(G)
+    fig = plt.figure(1)
+    fig.set_size_inches(18.5, 10.5)
+    nx.draw(G, pos, node_color=color_map, with_labels=True, font_weight='bold', node_size=60, font_size=6)
+    nx.draw_networkx_edge_labels(G, pos, font_size=5)
+    plt.savefig("./network.png")
+    #plt.show()
 
 
 g = Graph()
 number_of_nodes = 100
-number_of_edges = number_of_nodes*3
+number_of_edges = number_of_nodes*10
 n = [Node(x) for x in range(number_of_nodes)]
 g.add_nodes(n)
 
@@ -79,33 +103,10 @@ for _ in range(number_of_edges):
     if not g.contains_edge(n[x],n[y]):
         g.add_edge(n[x], n[y], cost)
 
-dijkstra(g,n[0])
-
-
-
-# Draw graph
-G = nx.Graph()
-color_map = []
+dijkstra(g, n[0])
 for node in n:
-    G.add_node(node.id,distance=node.distance)
-    if node.id == 0:
-        color_map.append("blue")
-    else:
-        color_map.append("red")
-for key in g.edges.keys():
-    start = key
-    ends = g.edges[key]
-    for end in ends:
-        G.add_edge(start.id,end.id,weight=g.get_weight(start,end))
-
-pos = nx.spring_layout(G)
-print(pos)
-
-fig=plt.figure(1)
-fig.set_size_inches(18.5, 10.5)
-nx.draw(G,pos,node_color = color_map, with_labels=True, font_weight='bold',node_size=60,font_size=6)
-nx.draw_networkx_edge_labels(G, pos,font_size=5)
-plt.show()
+    print(node)
+draw(g)
 
 
 
