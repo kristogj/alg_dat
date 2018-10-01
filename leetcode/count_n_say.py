@@ -2,6 +2,7 @@ class Solution:
     def countAndSay(self,n):
         num = "1"
         while n != 1:
+            print(num)
             num = self.next_state(num)
             n -= 1
         return num
@@ -28,4 +29,4 @@ class Solution:
 
 
 s = Solution()
-print(s.countAndSay(4))
+s.countAndSay(20)
