@@ -49,18 +49,16 @@ class Graph:
 def dijkstra(graph, start_node):
 
     Q = list(graph.nodes)
-    Q.sort(key= lambda node: node.distance)
-
     start_node.distance = 0  # Distance from source to source
 
     while len(Q) > 0:
+        Q.sort(key=lambda node: node.distance,reverse=True)  # Reversed so I can pop from the end not the beginning
         current = Q.pop()
         for neighbor in graph.edges[current]:
             alt = current.distance + graph.get_weight(current,neighbor)
             if alt < neighbor.distance:
                 neighbor.distance = alt
                 neighbor.parent = current
-                Q.sort(key=lambda node: node.distance)
 
     return graph.nodes
 
@@ -104,9 +102,8 @@ for _ in range(number_of_edges):
         g.add_edge(n[x], n[y], cost)
 
 dijkstra(g, n[0])
-for node in n:
-    print(node)
-draw(g)
+#for node in n: print(node)
+#draw(g)
 
 
 
