@@ -11,3 +11,4 @@ class Solution(object):
 
 s = Solution()
 print(s.hammingDistance(1,4))
+
