@@ -14,6 +14,12 @@ def sortArrayByParity(A):
             odd.append(num)
     return even + odd
 
+"""
+This might be the cleanest, but as with the first one here, we do not get te even and odd element sorted in ascending
+or descending order. With mergesort we do.
+"""
+def lambdaSortArrayByParity(A):
+    return sorted(A,key= lambda x: x % 2 != 0)
 
 def mergesortArrayByParity(A):
     """
@@ -54,9 +60,6 @@ def merge(left,right):
     return res
 
 A = [3,1,2,4]*10000
-print(mergesortArrayByParity(A))
-
-
 
 t1 = time()
 print(sortArrayByParity(A))
@@ -64,3 +67,6 @@ print(time() - t1)
 t2 = time()
 print(mergesortArrayByParity(A))
 print(time() - t2)
+t3 = time()
+print(lambdaSortArrayByParity(A))
+print(time() - t3)
