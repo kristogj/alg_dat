@@ -95,3 +95,66 @@ class BST_recursive(object):
             else:
                 return self.search_helper(current.left, find_val)
         return False
+
+    def minValueNode(self,root):
+        current = root
+        while current.left:
+            current = current.left
+        return current
+
+    def delete(self,root,key):
+
+        # Base case
+        if not root:
+            return root
+
+        # The node has to be in the right subtree
+        if key > root.value:
+            self.delete(root.right,key)
+
+        # The node has to be in the left subtree
+        elif key < root.value:
+            self.delete(root.left,key)
+
+        # The value is equal, delete this node
+        else:
+
+            # Node with only one child or no child
+            if not root.left:
+                temp = root.right
+                root = None
+                return temp
+
+            elif root.right is None:
+                temp = root.left
+                root = None
+                return temp
+
+            # Node with two children: Get the inorder successor
+            # (smallest in the right subtree)
+            temp = self.minValueNode(root.right)
+
+            # Copy the inorder successor's content to this node
+            root.value = temp.value
+
+            # Delete the inorder successor
+            root.right = self.delete(root.right, temp.value)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

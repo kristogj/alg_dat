@@ -12,6 +12,9 @@ class Node:
     def __str__(self):
         return str(self.value)
 
+    def __repr__(self):
+        return str(self.value)
+
 
 def init():
     n0 = Node(0)
@@ -32,27 +35,23 @@ root = init()
 
 
 def bfs(root, value):
-    queue = [root]
+    queue, path = [root], []
     while queue:
         current = queue.pop(0)
-        print(current)
-        if current.value == value:
-            return True
+        path.append(current)
         for child in current.children:
             queue.append(child)
-    return False
+    return path
 
 
 def dfs(root, value):
-    stack = [root]
+    stack,path = [root], []
     while stack:
         current = stack.pop()
-        print(current)
-        if current.value == value:
-            return True
+        path.append(current)
         for child in current.children[::-1]:
             stack.append(child)
-    return False
+    return path
 
 
 print(bfs(root,2))

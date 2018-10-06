@@ -21,3 +21,5 @@ class Solution(object):
             return self.searchBST(root.left,val)
         else:
             return self.searchBST(root.right,val)
+
+
